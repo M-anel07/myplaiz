@@ -1,3 +1,5 @@
+// src/types/pendu.ts
+
 export type GameMode = "solo" | "multi"
 export type GameStatus = "waiting" | "choosing" | "playing" | "won" | "lost"
 
@@ -15,4 +17,5 @@ export interface RoomState {
   guessedLetters: string[]
   wrongLetters: string[]
   maxWrong: number
+  error?: string
 }
