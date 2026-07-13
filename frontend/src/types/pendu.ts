@@ -17,5 +17,6 @@ export interface RoomState {
   guessedLetters: string[]
   wrongLetters: string[]
   maxWrong: number
+  chooserId?: string
   error?: string
 }

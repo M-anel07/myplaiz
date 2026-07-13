@@ -33,6 +33,7 @@ io.on("connection", (socket) => {
 
     if (mode === "multi" && room.players.length === 2) {
       room.status = "choosing"
+      room.chooserId = room.players[0].id
       rooms.set(roomId, room)
     }
 
@@ -43,6 +44,7 @@ io.on("connection", (socket) => {
   socket.on("set_word", ({ roomId, word }: { roomId: string; word: string }) => {
     let room = rooms.get(roomId)
     if (!room || room.status !== "choosing") return
+    if (room.mode === "multi" && socket.id !== room.chooserId) return
 
     room = setWord(room, word)
     rooms.set(roomId, room)
@@ -63,8 +65,15 @@ io.on("connection", (socket) => {
     if (!room) return
 
     const newRoom = createRoom(roomId, room.mode)
-    newRoom.players = room.players
-    if (room.mode === "multi") newRoom.status = "choosing"
+
+    // Inverser les roles en multi
+    if (room.mode === "multi") {
+      newRoom.players = [...room.players].reverse()
+      newRoom.status = "choosing"
+    } else {
+      newRoom.players = room.players
+    }
+
     rooms.set(roomId, newRoom)
     io.to(roomId).emit("room_update", newRoom)
   })
