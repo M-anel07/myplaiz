@@ -137,23 +137,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/[0.06] mt-8">
-        <div className="max-w-5xl mx-auto px-8 py-10 flex items-center justify-between flex-wrap gap-4">
-          <p className="font-black text-sm">
-            Myplai<span className="text-[#7C3AFF]">&apos;z</span>
-          </p>
-          <div className="flex gap-6">
-            <Link href="/rgpd" className="text-white/25 hover:text-white/60 text-xs transition-colors">
-              Confidentialite
-            </Link>
-            <Link href="/apropos" className="text-white/25 hover:text-white/60 text-xs transition-colors">
-              A propos
-            </Link>
-          </div>
-          <p className="text-white/15 text-xs">Fait avec soin · 2025</p>
-        </div>
-      </footer>
 
     </main>
   )
